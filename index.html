@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprende con Sonic</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Aprende con Sonic</h1>
+    
+    <!-- Pantalla de selección de categorías -->
+    <div id="pantalla-categorias">
+        <h2>Elige una categoría</h2>
+        <button class="categoria" data-categoria="familia">Familia</button>
+        <button class="categoria" data-categoria="animales">Animales</button>
+        <button class="categoria" data-categoria="comida">Comida</button>
+        <button class="categoria" data-categoria="nombres">Nombres</button>
+        <button class="categoria" data-categoria="numeros">Numeros</button>
+    </div>
+    
+    <!-- Zona de juego (oculta al inicio) -->
+    <div id="zona-juego" style="display: none;">
+        <h2 id="titulo-categoria"></h2>
+        <img id="imagen-palabra" src="" alt="Imagen de la palabra" width="250px">
+        <div id="zona-palabra" class="container"></div>
+        <div id="letras" class="container"></div>
+        <p>Puntaje: <span id="puntaje">0</span></p>
+        <div id="botones-juego">
+            <button id="comprobar">Comprobar</button>
+            <button id="limpiar">Borrar palabra</button>
+            <button id="volver">Volver al menú</button>
+        </div>
+        
+    </div>
+    
+    <script src="index.js"></script>
+</body>
+</html>
