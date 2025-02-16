@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aprende con Sonic</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Aprende con Sonic</title>
 </head>
 <body>
+    <button id="btn-audio">
+        <i id="icono-audio" class="fa-solid fa-volume-high"></i>
+    </button>
+
     <h1>Aprende con Sonic</h1>
     
     <!-- Pantalla de selección de categorías -->
@@ -18,7 +23,7 @@
         <button class="categoria" data-categoria="nombres">Nombres</button>
         <button class="categoria" data-categoria="numeros">Numeros</button>
     </div>
-    
+
     <!-- Zona de juego (oculta al inicio) -->
     <div id="zona-juego" style="display: none;">
         <h2 id="titulo-categoria"></h2>
@@ -31,9 +36,9 @@
             <button id="limpiar">Borrar palabra</button>
             <button id="volver">Volver al menú</button>
         </div>
-        
     </div>
-    
+
     <script src="index.js"></script>
 </body>
+
 </html>

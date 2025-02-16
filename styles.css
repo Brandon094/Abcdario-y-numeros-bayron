@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -16,19 +17,22 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: white;
     text-shadow: 2px 2px 5px black;
+    padding: 0 10px;
+    text-align: center;
 }
 
 h1 {
     font-size: 5rem;
     color: yellow;
     text-shadow: 4px 4px 10px black;
+    text-align: center;
 }
 
 h2 {
     font-size: 3rem;
-    text-align: center;
     color: white;
     text-shadow: 2px 2px 10px black;
+    text-align: center;
 }
 
 .container {
@@ -74,6 +78,7 @@ button {
     color: black;
     cursor: pointer;
     box-shadow: 2px 2px 8px black;
+    text-align: center;
 }
 
 button:hover {
@@ -83,9 +88,11 @@ button:hover {
 #botones-juego {
     display: flex;
     justify-content: center;
-    gap: 15px; /* Espaciado entre botones */
+    flex-wrap: wrap;
+    gap: 15px;
     margin-top: 15px;
     margin-bottom: 17px;
+    width: 100%;
 }
 
 @keyframes aparecer {
@@ -104,30 +111,119 @@ button:hover {
 }
 
 #imagen-palabra {
-    display: block; /* Asegura que la imagen se comporte como un bloque */
-    margin: 20px auto; /* Centra la imagen horizontalmente */
-    max-width: 50%; /* Evita que la imagen sea demasiado grande */
-    height: auto; /* Mantiene la proporción original */
-    border-radius: 20px; /* Esquinas redondeadas */
-    box-shadow: 4px 4px 10px black; /* Sombra para resaltar */
-    border: 4px solid yellow; /* Borde amarillo para darle estilo */
+    display: block;
+    margin: 20px auto;
+    max-width: 50%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 4px 4px 10px black;
+    border: 4px solid yellow;
 }
 
-/* 📱 Media Query para pantallas pequeñas */
-@media (max-width: 600px) {
+#btn-audio {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: black;
+}
+
+/* 📱 Media Queries para diferentes dispositivos */
+
+/* Teléfonos pequeños (320px - 374px) */
+@media (max-width: 374px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
+    .letra {
+        width: 35px;
+        height: 35px;
+        font-size: 1.5rem;
+    }
+    button {
+        font-size: 1rem;
+        padding: 6px 12px;
+    }
+}
+
+/* Teléfonos estándar (375px - 414px) */
+@media (max-width: 414px) {
+    h1 {
+        font-size: 3rem;
+    }
+    h2 {
+        font-size: 2rem;
+    }
     .letra {
         width: 40px;
         height: 40px;
-        font-size: 20px;
+        font-size: 1.75rem;
     }
-
-    #zona-palabra {
-        min-height: 50px;
-        font-size: 20px;
-    }
-
     button {
-        font-size: 16px;
-        padding: 8px 15px;
+        font-size: 1.2rem;
+        padding: 8px 14px;
     }
-}    
+}
+
+/* Teléfonos grandes y phablets (415px - 600px) */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 3.5rem;
+    }
+    h2 {
+        font-size: 2.5rem;
+    }
+    .letra {
+        width: 45px;
+        height: 45px;
+        font-size: 1.8rem;
+    }
+    button {
+        font-size: 1.3rem;
+        padding: 10px 18px;
+    }
+}
+
+/* Tablets pequeñas (601px - 768px) */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 4rem;
+    }
+    h2 {
+        font-size: 3rem;
+    }
+    .letra {
+        width: 50px;
+        height: 50px;
+        font-size: 2rem;
+    }
+    button {
+        font-size: 1.5rem;
+        padding: 12px 20px;
+    }
+}
+
+/* Tablets grandes (769px - 1024px) */
+@media (max-width: 1024px) {
+    h1 {
+        font-size: 4.5rem;
+    }
+    h2 {
+        font-size: 3.5rem;
+    }
+    .letra {
+        width: 55px;
+        height: 55px;
+        font-size: 2.2rem;
+    }
+    button {
+        font-size: 1.7rem;
+        padding: 14px 22px;
+    }
+}
