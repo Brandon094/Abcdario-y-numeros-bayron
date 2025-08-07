@@ -1,67 +1,100 @@
+/* styles.css */
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body {
-    background-image: url(https://i.blogs.es/7ced00/sonic-prime-ya-esta-disponible-en-netflix-una-adaptacion-mas-del-erizo-azul-que-busca-colocarse-en-la-cima/840_560.jpeg);
-    background-repeat: no-repeat;
+    font-family: 'Segoe UI', sans-serif;
+    background-image: url("https://wallpapers.com/images/featured/sonic-background-6ymyz7g3n8heov9v.jpg");
     background-size: cover;
     background-position: center;
-    height: 100vh;
+    color: #fff;
+    text-align: center;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: white;
-    text-shadow: 2px 2px 5px black;
-    padding: 0 10px;
-    text-align: center;
+    justify-content: space-between;
+}
+
+header {
+    padding: 20px;
+    position: relative;
 }
 
 h1 {
-    font-size: 5rem;
+    font-size: 3rem;
     color: yellow;
-    text-shadow: 4px 4px 10px black;
-    text-align: center;
+    text-shadow: 3px 3px 5px black;
 }
 
 h2 {
-    font-size: 3rem;
+    font-size: 2rem;
+    margin: 20px 0;
     color: white;
-    text-shadow: 2px 2px 10px black;
-    text-align: center;
+    text-shadow: 2px 2px 4px black;
+}
+
+#btn-audio {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: yellow;
+    cursor: pointer;
+}
+
+.categorias {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin: 30px 0;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background-color: #ffc107;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px black;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: #ff9800;
 }
 
 .container {
-    width: 100%;
-    min-height: 100px;
-    border: solid 4px yellow;
-    margin: 15px 0;
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px auto;
     padding: 10px;
+    border: 2px solid yellow;
+    border-radius: 10px;
+    max-width: 90%;
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
-.letra {
+.letra, .letra-agregada {
     background-color: royalblue;
     color: white;
-    border: solid 2px yellow;
-    text-align: center;
-    width: 60px;
-    height: 60px;
-    font-size: 2em;
-    margin: 5px;
-    cursor: grab;
-    box-shadow: 3px 3px 10px black;
+    width: 50px;
+    height: 50px;
+    font-size: 2rem;
+    border: 2px solid yellow;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.2s;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
 }
 
 .letra:hover {
@@ -69,161 +102,60 @@ h2 {
     background-color: dodgerblue;
 }
 
-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 1.5rem;
-    background-color: yellow;
-    border: none;
-    color: black;
-    cursor: pointer;
-    box-shadow: 2px 2px 8px black;
-    text-align: center;
-}
-
-button:hover {
-    background-color: orange;
+#imagen-palabra {
+    width: 200px;
+    margin: 20px auto;
+    border: 3px solid yellow;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px black;
 }
 
 #botones-juego {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
     gap: 15px;
-    margin-top: 15px;
-    margin-bottom: 17px;
-    width: 100%;
+    margin: 20px 0;
+    flex-wrap: wrap;
 }
 
-@keyframes aparecer {
-    from {
-        transform: scale(0);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
+.puntaje {
+    font-size: 1.5rem;
+    margin: 10px 0;
+    color: lime;
 }
 
-.letra-agregada {
-    animation: aparecer 0.3s ease-in-out;
+.oculto {
+    display: none;
 }
 
-#imagen-palabra {
-    display: block;
-    margin: 20px auto;
-    max-width: 50%;
-    height: auto;
-    border-radius: 20px;
-    box-shadow: 4px 4px 10px black;
-    border: 4px solid yellow;
+footer {
+    padding: 10px;
+    font-size: 0.9rem;
+    color: #eee;
+    background: rgba(0, 0, 0, 0.5);
 }
 
-#btn-audio {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: black;
-}
-
-/* 📱 Media Queries para diferentes dispositivos */
-
-/* Teléfonos pequeños (320px - 374px) */
-@media (max-width: 374px) {
-    h1 {
-        font-size: 2.5rem;
-    }
-    h2 {
-        font-size: 1.5rem;
-    }
-    .letra {
-        width: 35px;
-        height: 35px;
-        font-size: 1.5rem;
-    }
-    button {
-        font-size: 1rem;
-        padding: 6px 12px;
-    }
-}
-
-/* Teléfonos estándar (375px - 414px) */
-@media (max-width: 414px) {
-    h1 {
-        font-size: 3rem;
-    }
-    h2 {
-        font-size: 2rem;
-    }
-    .letra {
+/* Responsive */
+@media (max-width: 600px) {
+    .letra, .letra-agregada {
         width: 40px;
         height: 40px;
-        font-size: 1.75rem;
-    }
-    button {
-        font-size: 1.2rem;
-        padding: 8px 14px;
-    }
-}
-
-/* Teléfonos grandes y phablets (415px - 600px) */
-@media (max-width: 600px) {
-    h1 {
-        font-size: 3.5rem;
-    }
-    h2 {
-        font-size: 2.5rem;
-    }
-    .letra {
-        width: 45px;
-        height: 45px;
-        font-size: 1.8rem;
-    }
-    button {
-        font-size: 1.3rem;
-        padding: 10px 18px;
-    }
-}
-
-/* Tablets pequeñas (601px - 768px) */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 4rem;
-    }
-    h2 {
-        font-size: 3rem;
-    }
-    .letra {
-        width: 50px;
-        height: 50px;
-        font-size: 2rem;
-    }
-    button {
         font-size: 1.5rem;
-        padding: 12px 20px;
     }
-}
 
-/* Tablets grandes (769px - 1024px) */
-@media (max-width: 1024px) {
     h1 {
-        font-size: 4.5rem;
-    }
-    h2 {
-        font-size: 3.5rem;
-    }
-    .letra {
-        width: 55px;
-        height: 55px;
         font-size: 2.2rem;
     }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
     button {
-        font-size: 1.7rem;
-        padding: 14px 22px;
+        font-size: 1rem;
+    }
+
+    #imagen-palabra {
+        width: 150px;
     }
 }
