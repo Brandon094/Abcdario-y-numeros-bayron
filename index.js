@@ -1,167 +1,161 @@
-// Agregar la librería SweetAlert2
-const script = document.createElement("script");
-script.src = "https://cdn.jsdelivr.net/npm/sweetalert2@11";
-document.head.appendChild(script);
-
-// Objeto que contiene las categorías y sus respectivas palabras
-const categorias = {
-    familia: ["PAPA", "MAMA", "HERMANO"],
-    animales: ["PERRO", "GATO", "LEON", "ELEFANTE"],
-    comida: ["MANZANA", "PAN", "QUESO", "SOPA"],
-    nombres: ["JOHAN", "MARIA", "PEDRO", "LAURA"],
-    numeros: ["UNO", "DOS", "TRES", "CUATRO", "CINCO", "SEIS", "SIETE", "OCHO", "NUEVE", "DIEZ"]
-};
-
-// Variables globales
-let categoriaActual = null;
-let palabrasEncontradas = [];
-let puntaje = 0;
-
-function iniciarCategoria(categoria) {
-    categoriaActual = categoria;
-    document.getElementById("pantalla-categorias").style.display = "none";
-    document.getElementById("zona-juego").style.display = "block";
-    document.getElementById("titulo-categoria").textContent = categoria.toUpperCase();
-    cargarPalabra();
+/* styles.css */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-function cargarPalabra() {
-    let palabras = categorias[categoriaActual].filter(p => !palabrasEncontradas.includes(p));
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-image: url("https://wallpapers.com/images/featured/sonic-background-6ymyz7g3n8heov9v.jpg");
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 
-    if (palabras.length === 0) {
-        Swal.fire({
-            title: "¡Felicidades!",
-            text: "Completaste la categoría.",
-            icon: "success",
-            confirmButtonText: "Volver al menú"
-        }).then(() => {
-            document.getElementById("pantalla-categorias").style.display = "block";
-            document.getElementById("zona-juego").style.display = "none";
-        });
-        return;
+header {
+    padding: 20px;
+    position: relative;
+}
+
+h1 {
+    font-size: 3rem;
+    color: yellow;
+    text-shadow: 3px 3px 5px black;
+}
+
+h2 {
+    font-size: 2rem;
+    margin: 20px 0;
+    color: white;
+    text-shadow: 2px 2px 4px black;
+}
+
+#btn-audio {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: yellow;
+    cursor: pointer;
+}
+
+.categorias {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin: 30px 0;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background-color: #ffc107;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px black;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: #ff9800;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px auto;
+    padding: 10px;
+    border: 2px solid yellow;
+    border-radius: 10px;
+    max-width: 90%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.letra, .letra-agregada {
+    background-color: royalblue;
+    color: white;
+    width: 50px;
+    height: 50px;
+    font-size: 2rem;
+    border: 2px solid yellow;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+}
+
+.letra:hover {
+    transform: scale(1.1);
+    background-color: dodgerblue;
+}
+
+#imagen-palabra {
+    width: 200px;
+    margin: 20px auto;
+    border: 3px solid yellow;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px black;
+}
+
+#botones-juego {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.puntaje {
+    font-size: 1.5rem;
+    margin: 10px 0;
+    color: lime;
+}
+
+.oculto {
+    display: none;
+}
+
+footer {
+    padding: 10px;
+    font-size: 0.9rem;
+    color: #eee;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .letra, .letra-agregada {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
     }
 
-    let palabra = palabras[Math.floor(Math.random() * palabras.length)];
-    document.getElementById("imagen-palabra").src = `img/${palabra.toLowerCase()}.png`;
-    document.getElementById("imagen-palabra").alt = `Imagen de ${palabra}`;
-    document.getElementById("zona-palabra").innerHTML = "";
-    mostrarLetras(palabra);
-}
+    h1 {
+        font-size: 2.2rem;
+    }
 
-function mostrarLetras(palabra) {
-    let letras = palabra.split('').sort(() => Math.random() - 0.5);
-    let zonaLetras = document.getElementById("letras");
-    zonaLetras.innerHTML = "";
+    h2 {
+        font-size: 1.5rem;
+    }
 
-    letras.forEach(letra => {
-        let btn = document.createElement("button");
-        btn.textContent = letra;
-        btn.classList.add("letra");
-        btn.addEventListener("click", () => {
-            agregarLetra(letra);
-            reproducirSonido();
-        });
-        zonaLetras.appendChild(btn);
-    });
-}
+    button {
+        font-size: 1rem;
+    }
 
-const letterSound = new Audio("sounds/Sonic Ring.mp3");
-
-function reproducirSonido() {
-    letterSound.pause();
-    letterSound.currentTime = 0;
-    letterSound.play().catch(error => console.error("Error al reproducir el sonido:", error));
-}
-
-function agregarLetra(letra) {
-    let div = document.createElement("div");
-    div.textContent = letra;
-    div.classList.add("letra-agregada");
-    document.getElementById("zona-palabra").appendChild(div);
-}
-
-function comprobarPalabra() {
-    let palabraFormada = Array.from(document.getElementById("zona-palabra").children)
-        .map(letra => letra.textContent).join('');
-
-    // Crear los elementos de audio
-    const sonidoCorrecto = new Audio("sounds/Stage Win.mp3");
-    const sonidoIncorrecto = new Audio("sounds/Error.mp3");
-
-    if (categorias[categoriaActual].includes(palabraFormada)) {
-        // Reproducir sonido de acierto
-        sonidoCorrecto.play();
-        Swal.fire({
-            title: "¡Correcto!",
-            text: "Has encontrado la palabra: " + palabraFormada,
-            icon: "success",
-            confirmButtonText: "Continuar"
-        }).then(() => {
-            palabrasEncontradas.push(palabraFormada);
-            puntaje += 10;
-            document.getElementById("puntaje").textContent = puntaje;
-            cargarPalabra();
-        });
-    } else {
-        // Reproducir sonido de error
-        sonidoIncorrecto.play();
-        Swal.fire({
-            title: "Incorrecto",
-            text: "Intenta de nuevo",
-            icon: "error",
-            confirmButtonText: "Reintentar"
-        });
+    #imagen-palabra {
+        width: 150px;
     }
 }
-
-document.querySelectorAll(".categoria").forEach(btn => {
-    btn.addEventListener("click", function () {
-        iniciarCategoria(this.dataset.categoria);
-    });
-});
-
-document.getElementById("comprobar").addEventListener("click", comprobarPalabra);
-document.getElementById("limpiar").addEventListener("click", () => {
-    document.getElementById("zona-palabra").innerHTML = "";
-});
-
-document.getElementById("volver").addEventListener("click", () => {
-    document.getElementById("pantalla-categorias").style.display = "block";
-    document.getElementById("zona-juego").style.display = "none";
-});
-
-function preloadImages(imageArray) {
-    imageArray.forEach(src => {
-        let img = new Image();
-        img.src = src;
-    });
-}
-
-preloadImages([
-    'img/papa.png','img/mama.png','img/hermano.png',
-    'img/leon.png', 'img/perro.png', 'img/gato.png', 'img/elefante.png',
-    'img/pan.png', 'img/sopa.png', 'img/queso.png', 'img/manzana.png',
-    'img/uno.png', 'img/dos.png', 'img/tres.png', 'img/cuatro.png', 'img/cinco.png',
-    'img/seis.png', 'img/siete.png', 'img/ocho.png', 'img/nueve.png', 'img/diez.png'
-]);
-
-// Reproducir música de fondo
-const backgroundMusic = new Audio("sounds/stranger-things.mp3");
-backgroundMusic.loop = true;
-backgroundMusic.volume = 0.5;
-backgroundMusic.play().catch(error => console.log("Auto-play bloqueado por el navegador", error));
-
-const btnAudio = document.getElementById("btn-audio");
-const iconoAudio = document.getElementById("icono-audio");
-
-btnAudio.addEventListener("click", () => {
-    if (backgroundMusic.paused) {
-        backgroundMusic.play();
-        iconoAudio.classList.remove("fa-volume-xmark");
-        iconoAudio.classList.add("fa-volume-high");
-    } else {
-        backgroundMusic.pause();
-        iconoAudio.classList.remove("fa-volume-high");
-        iconoAudio.classList.add("fa-volume-xmark");
-    }
-});
